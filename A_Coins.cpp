@@ -83,20 +83,11 @@ void printv(vector<ll> v)
 
 void solve(){
     ll n, k, y; 
-    cin >> n;
-    string s;
-    cin>>s;
-    n = s.size();
-    ll g = 0, b = 0, ans = n;
-    for(k = 0; k<n; k++){
-        if(s[k] == 'G')g++;
-        else b++;
-        if(b > 2*g){
-            ans = k+1;
-            break;
-        }
-    }
-    cout<<ans<<endl;
+    cin >> n >> k;
+    if(n%2 == 0)cyes;
+    else if(k&1 and k <= n)cyes;
+    else cno;
+    cln;
 }
 
 int main()

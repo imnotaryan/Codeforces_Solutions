@@ -81,34 +81,34 @@ void printv(vector<ll> v)
 }   
 
 
-void solve(){
-    ll n, k, y; 
-    cin >> n;
+void solve(vector<bool> &sv){
+    ll n, k, y, a, b, c; 
+    cin >> n ;
+    char ch;
+    cin >> ch;
     string s;
     cin>>s;
-    n = s.size();
-    ll g = 0, b = 0, ans = n;
-    for(k = 0; k<n; k++){
-        if(s[k] == 'G')g++;
-        else b++;
-        if(b > 2*g){
-            ans = k+1;
-            break;
+    vec ans;
+    for(int i = 1; i<=n; i++){
+        if(s[i-1] != ch and isPrime(i)){
+            ans.pb(i);
         }
     }
-    cout<<ans<<endl;
+    cout<<ans.size()<<endl;
+    for(auto it : ans)cout<<it<<endl;
+
 }
 
 int main()
 {
     fast_io();
     ll test_cases = 1;
-    // vector<bool> sv = sieve(1000);
+    vector<bool> sv = sieve(30000);
     // fileInput();
     cin >> test_cases;
     while (test_cases--)
     {
-        solve();
+        solve(sv);
     }
 
     return 0;

@@ -82,21 +82,50 @@ void printv(vector<ll> v)
 
 
 void solve(){
-    ll n, k, y; 
-    cin >> n;
-    string s;
-    cin>>s;
-    n = s.size();
-    ll g = 0, b = 0, ans = n;
-    for(k = 0; k<n; k++){
-        if(s[k] == 'G')g++;
-        else b++;
-        if(b > 2*g){
-            ans = k+1;
-            break;
+    ll n, k, y, a, b, c; 
+    cin >> n >> k;
+    
+    vec v(n), temp(n, -1);
+    ll i = 0, total = 0, elt = -1;
+    floop(i, n)cin>>v[i], total += v[i];
+    ump<ll, ll>mp;
+    i = 0;
+    for(int i = 0; i<k; i++){
+        
+        ll t;
+        cin >> t;
+       
+        if(t == 1){
+            ll x, y;
+            cin >> x >> y;
+            if(elt != -1){
+                if(mp.find(x-1) != mp.end()){
+                    total -= mp[x-1];
+                    mp[x-1] = y;
+                    total += y;
+                } else {
+                    total -= elt;
+                    mp[x-1] = y;
+                    total += y;
+                }
+            } else {
+
+                total -= v[x-1];
+                v[x-1] = y;
+                total += y;
+                
+            }
+            
+        } else {
+            ll x;
+            cin >> x;
+            elt = x;
+            total = (x*n);
+            mp.clear();
         }
+        
+        cout<<total<<endl;
     }
-    cout<<ans<<endl;
 }
 
 int main()
@@ -105,7 +134,7 @@ int main()
     ll test_cases = 1;
     // vector<bool> sv = sieve(1000);
     // fileInput();
-    cin >> test_cases;
+    // cin >> test_cases;
     while (test_cases--)
     {
         solve();

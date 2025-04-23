@@ -82,20 +82,23 @@ void printv(vector<ll> v)
 
 
 void solve(){
-    ll n, k, y; 
-    cin >> n;
-    string s;
-    cin>>s;
-    n = s.size();
-    ll g = 0, b = 0, ans = n;
-    for(k = 0; k<n; k++){
-        if(s[k] == 'G')g++;
-        else b++;
-        if(b > 2*g){
-            ans = k+1;
-            break;
-        }
+    ll n, k, y, a, b, c; 
+    cin >> n >> k;
+    ll i = 0, sum = 0;
+    vec v(n);
+    floop(i, n)cin>>v[i], sum += v[i];
+    sortv(v);
+
+    ll sumAdd = -1, ans = 0;
+
+    for(int i = n-1; i>=0; i--){
+        ll add = (k - sum >= 0) ? (k - sum) / (i+1) : -1;
+        ans += ((i+1) * (add - sumAdd));
+        // cout<<ans<<" ";
+        sumAdd = add;
+        sum -= v[i];
     }
+    // cout<<"\nreal ans\n";
     cout<<ans<<endl;
 }
 

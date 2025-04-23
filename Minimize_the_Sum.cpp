@@ -78,25 +78,55 @@ void printv(vector<ll> v)
     for (auto it : v)
         cout << it << " ";
     cout << endl;
-}   
+}  
+
+bool check(ll mid, ll refAns, ll &fscore, vvec &v){
+    ll firstScore = 0;
+    ll n = v.size();
+    ll i = 0, j = 0, cnt = 0;
+    ll ans = false;
+    floop(i, n){
+        ll allScore = 0;
+        floop(j, n){
+            if(i == 0)firstScore += min(mid, v[i][j]);
+            else allScore += min(mid, v[i][j]);
+        }
+        if(firstScore < allScore)cnt++;
+    }
+    // cout<<"see\n";
+    // cout<<mid<<" "<<cnt<<endl;
+    if(cnt >= fscore){
+        fscore = cnt;
+        if(mid < refAns)
+        ans = true;
+    }
+    return ans;
+}
 
 
 void solve(){
-    ll n, k, y; 
-    cin >> n;
-    string s;
-    cin>>s;
-    n = s.size();
-    ll g = 0, b = 0, ans = n;
-    for(k = 0; k<n; k++){
-        if(s[k] == 'G')g++;
-        else b++;
-        if(b > 2*g){
-            ans = k+1;
-            break;
-        }
+    ll n, k, y, a, b, c; 
+    cin >> a >> b >> c;
+
+    int new_a = b - (c - b);
+    if(new_a >= a && new_a % a == 0 && new_a != 0) {
+        cout << "YES\n";
+        return;
     }
-    cout<<ans<<endl;
+
+    int new_b = a + (c - a)/2;
+    if(new_b >= b && (c-a)%2 == 0 && new_b % b == 0 && new_b != 0) {
+        cout << "YES\n";
+        return;
+    }
+
+    int new_c = a + 2*(b - a);
+    if(new_c >= c && new_c % c == 0 && new_c != 0) {
+        cout << "YES\n";
+        return;
+    }
+    cno;
+    cln;
 }
 
 int main()

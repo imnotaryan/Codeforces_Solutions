@@ -82,18 +82,21 @@ void printv(vector<ll> v)
 
 
 void solve(){
-    ll n, k, y; 
+    ll n, k, y, a, b, c; 
     cin >> n;
-    string s;
-    cin>>s;
-    n = s.size();
-    ll g = 0, b = 0, ans = n;
-    for(k = 0; k<n; k++){
-        if(s[k] == 'G')g++;
-        else b++;
-        if(b > 2*g){
-            ans = k+1;
-            break;
+    vector<string>v(n);
+    ll i = 0;
+    floop(i, n)cin >> v[i];
+    ll ans = 0;
+
+    floop(i, n/2){
+        for(int j = i; j<n-i-1; j++){
+            ll sum = 0;
+            sum += (v[i][j]-'0');
+            sum += (v[n-j-1][i]-'0');
+            sum += (v[j][n-i-1] - '0');
+            sum += (v[n-i-1][n-j-1] - '0');
+            ans += min(sum, 4-sum);
         }
     }
     cout<<ans<<endl;
