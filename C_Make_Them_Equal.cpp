@@ -80,6 +80,15 @@ void printv(vector<ll> v)
     cout << endl;
 }   
 
+bool check(string s, char ch){
+    for(int i = 0; i<s.size(); i++)if(s[i] != ch)return false;
+    return true;
+}
+
+int checkAgain(string s, char ch){
+    for(int i = (s.size()/2+1); i<=s.size(); i++)if(s[i-1] == ch)return i;
+    return 0;
+}
 
 void solve(vector<bool> &sv){
     ll n, k, y, a, b, c; 
@@ -88,15 +97,14 @@ void solve(vector<bool> &sv){
     cin >> ch;
     string s;
     cin>>s;
-    vec ans;
-    for(int i = 1; i<=n; i++){
-        if(s[i-1] != ch and (isPrime(i) || i == 1)){
-            ans.pb(i);
-        }
+    if(check(s, ch))cout<<0<<endl;
+    else{
+        ll val = checkAgain(s, ch);
+        if(val)cout<<1<<endl<<val<<endl;
+        else cout<<2<<endl<<n<<" "<<n-1<<endl;
     }
-    cout<<ans.size()<<endl;
-    for(auto it : ans)cout<<it<<endl;
-    // cout<<"end\n";
+    // cout<<0<<endl;
+    
 }
 
 int main()

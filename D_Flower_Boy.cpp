@@ -80,34 +80,31 @@ void printv(vector<ll> v)
     cout << endl;
 }   
 
+bool check(string s, char ch){
+    for(int i = 0; i<s.size(); i++)if(s[i] != ch)return false;
+    return true;
+}
+
+int checkAgain(string s, char ch){
+    for(int i = (s.size()/2+1); i<=s.size(); i++)if(s[i-1] == ch)return i;
+    return 0;
+}
 
 void solve(){
-    ll n, k, y, a, b, c; 
-    cin >> n ;
-    vec v(n);
-    ll i = 0;
-    floop(i, n)cin>>v[i];
-    if(v[n-2] > v[n-1]){
-        cout<<-1<<endl;
-        return;
-    }
-    if(v[n-1] < 0){
-        if(is_sorted(v.begin(), v.end()))cout<<0<<endl;
-        else cout<<-1<<endl;
-        return;
-    }
-    cout<<n-2<<endl;
-    for(int i = 0; i<n-2; i++){
-        cout<<i+1<<" "<<n-1<<" "<<n<<endl;
-    }
-
+    ll n, m; 
+    cin >> n >> m;
+    vec a(n), b(m);
+    ll i = 0, j = 0, mini = LONG_MAX;;
+    floop(i, n)cin>>a[i];
+    floop(i, m)cin>>b[i];
+    
 }
 
 int main()
 {
     fast_io();
     ll test_cases = 1;
-    // vector<bool> sv = sieve(1000);
+    // vector<bool> sv = sieve(30000);
     // fileInput();
     cin >> test_cases;
     while (test_cases--)
